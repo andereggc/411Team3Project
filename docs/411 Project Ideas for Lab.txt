@@ -1,0 +1,16 @@
+﻿Cam’s idea: a recommender app. This project will use a website that users can log in to and create their account. Once created, they will give the website their location which we will then feed to the Weather API so we can forecast their local weather. Then, with the help of our Spotify API,  they can either link their Spotify to the website and make selections like “if rainy use this playlist, if sunny use this playlist”, or, if they don’t like their Spotify, then we will have generic Spotify playlists we recommend to the user.
+* We use:
+   * A website
+   * Spotify API
+   * Weather API
+   * Uses gmail to log in/OAuth/save data
+      * Maybe use Passport for Node?
+
+
+Idea 2: A recommender app using chatgpt. This project will use a website that users can log in to and create an account. Once created the website will prompt the user for how they are feeling. We will then use these feelings to ask chatgpt for a song recommendation. With the generated song recommendation we can then use the SpotifyAPI to query the song and play it for the user.
+* We will use
+   * Website
+   * Spotify API
+   * OpenAI API
+   * Gmail for Oauth
+   * SQL
