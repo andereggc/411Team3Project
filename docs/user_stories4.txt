@@ -1,4 +1,4 @@
-As a user, after selecting ML recommendations, I want to get a recommendation of songs based on what I’ve 
+4. As a user, after selecting ML recommendations, I want to get a recommendation of songs based on what I’ve 
 most recently listened to.
 
 Happy path: I am given song suggestions that are relevant to my most heavily played songs and my most recently 

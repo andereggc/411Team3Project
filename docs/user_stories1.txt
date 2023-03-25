@@ -1,4 +1,4 @@
-As a user, I want to see and select my recommendation types (AI or Machine learning) right after log in.
+1. As a user, I want to see and select my recommendation types (AI or Machine learning) right after log in.
 
 Happy path: After I log in, I can see two big choice boxes. The left one is AI recommendation, the right 
 one is Machine learning recommendation. The labels clearly appear on each box. AI recommendation provides 

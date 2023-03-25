@@ -1,4 +1,4 @@
-As a user, I want to sign in safely and reliably, and be able to quickly switch to different accounts.
+2. As a user, I want to sign in safely and reliably, and be able to quickly switch to different accounts.
 
 Happy path: I am able to sign in with Spotify’s OAuth, select “remember me”, and then remain signed 
 in on this browser (so long as it is not incognito and/or the user doesn’t clear cache/memory). I can 
@@ -8,4 +8,4 @@ recommendations.
 
 Unhappy path: I am not able to switch accounts because, despite pressing the logout button, I remained 
 logged in and not redirected to the official Spotify sign-in page. I am only able to switch accounts if 
-I manually clear my browser's cache. 
+I manually clear my browser's cache.
