@@ -1,0 +1,10 @@
+As a user, I want to see and select my recommendation types (AI or Machine learning) right after log in.
+
+Happy path: After I log in, I can see two big choice boxes. The left one is AI recommendation, the right 
+one is Machine learning recommendation. The labels clearly appear on each box. AI recommendation provides 
+recommendation based on my mode, whereas Machine learning is based on my music history. After I click on 
+one of them, the script will direct me to the correct interface based on my selection.
+
+Unhappy path: After I log in, I can't see selection panels, or the labels are missing so I failed to understand
+which is which, or the labels are too wordy. After I click on them, they direct me to the wrong page, or don't 
+direct me anywhere, or return a bug. 

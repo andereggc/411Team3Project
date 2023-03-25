@@ -1,0 +1,10 @@
+5. As a user, I want to find a song I like, then click the link and go to that song on Spotify.
+
+Happy path: After being recommended a song, I press the link Listen and it automatically opens 
+a new tab in my browser and loads the official Spotify website, where I am already signed in on, 
+and it takes me directly to the song I had just clicked Listen. 
+
+Unhappy path: The link I click is broken and doesn’t direct me to the official Spotify website for 
+my browser. Additionally, if it does bring me to the official Spotify website, it does not sign me 
+in to the same account as I had on the website or it does not bring me to the same song I clicked on 
+earlier.

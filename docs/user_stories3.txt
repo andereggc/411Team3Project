@@ -1,0 +1,9 @@
+As a user, after selecting AI recommendations, I want to be able to enter my current mood and receive a list 
+of recommended songs that match my mood, so that I can discover new music that fits my current emotional state.
+
+Happy path: As a user, I receive 5 personalized music recommendations based on my selected mood. I am able to 
+play it by clicking on the link which directs me to the song on spotify.
+
+Unhappy path: As a user, I select my current mood but the app does not provide any recommendations, provides the 
+recommendation for the wrong mode, or that I receive music recommendations that do not match my selected mood or 
+are not to my liking. 

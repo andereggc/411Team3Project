@@ -1,0 +1,10 @@
+As a user, after selecting ML recommendations, I want to get a recommendation of songs based on what I’ve 
+most recently listened to.
+
+Happy path: I am given song suggestions that are relevant to my most heavily played songs and my most recently 
+played songs. I am not shown multiple of the same song or a completely unordinary suggestion. Each song I select 
+is relevant to my specific music preference.
+
+Unhappy path: The songs that are generated for me are bland and not unique to me. It appears my music history 
+was completely ignored and the songs are not relevant to me at all. Each song I select is bad and isn’t tailored 
+to my specific music preference. 
