@@ -1,0 +1,41 @@
+extends layout.pug    
+
+block content
+  div.text-center
+    h1 ✨ Welcome #{user.id}! ✨
+
+    div(style="display: flex; align-items: center; justify-content: center")
+      //- img(src=user.images[0].url, class='circular_image')
+      span(style="margin-left: 10px")
+      <br>
+
+      button.btn.btn-primary.circular_button.float-right(style="margin-right: 10px;" onclick="window.location.href='/home'")
+        span.home-text Back to Home
+
+
+    div(style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;")
+      input#input-text.form-control(type="text" placeholder="Input mood")
+      button#copy-button.btn.btn-primary(style="margin-top: 10px;" onclick="generateSongs()")
+        | Find a Song
+      input#output-text.form-control(type="text" placeholder="Bank Account - 21 Savage" style="margin-top: 10px;" onclick="selectText()" readonly)
+
+  script.
+    function generateSongs() {
+      // IMPLEMENT:
+      // Takes in a string as input. The string is the artist's name
+      // You should now take the artists name and search for the artist on Spotify
+      // If they are not found on Spotify, simply return "no artist :P"
+      // If they are found on Spotify, then return a 5 bullet point list of
+      // the artists top songs. There should be five bullet points, with each point containing
+      // the artists name and the song name
+      var input = document.getElementById("input-text");
+      var output = document.getElementById("output-text");
+      //- output.value = input.value + "xxx";
+    }
+    
+    function selectText() {
+      var output = document.getElementById("output-text");
+      output.select();
+      document.execCommand("copy");
+    }
+
