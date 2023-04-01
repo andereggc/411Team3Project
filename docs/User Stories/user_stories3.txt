@@ -1,4 +1,4 @@
-As a user, after selecting AI recommendations, I want to be able to enter my current mood and receive a list 
+3. As a user, after selecting AI recommendations, I want to be able to enter my current mood and receive a list 
 of recommended songs that match my mood, so that I can discover new music that fits my current emotional state.
 
 Happy path: As a user, I receive 5 personalized music recommendations based on my selected mood. I am able to 
