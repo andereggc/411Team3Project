@@ -1,0 +1,19 @@
+extends layout.pug
+
+block content
+  .container.text-center
+    h1.mb-4 Spotify AI Reccy App ✨
+    p.mb-4 Welcome to the Spotify AI Reccy App! Our app uses machine learning and OpenAI to create personalized music recommendations just for you. To get started, please log in with your Spotify account.
+    form(action='/authorize', method='get', autocomplete='off')
+      button.btn.btn-primary.btn-lg
+        i.fab.fa-spotify.mr-2
+        | Log in with Spotify
+
+//- block content
+//-   .container.text-center
+//-       h1.mb-4 Spotify AI Reccy App ✨
+//-       p.mb-4 Welcome to the Spotify AI Reccy App! Our app uses machine learning and OpenAI to create personalized music recommendations just for you. To get started, please log in with your Spotify account.
+//-       a.btn.btn-primary.btn-lg(href='/authorize') Log in with Spotify
+//-         i.fab.fa-spotify.mr-2
+
+//-   | Log in with Spotify

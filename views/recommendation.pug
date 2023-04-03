@@ -1,0 +1,34 @@
+extends layout.pug
+    
+block content
+  div.text-center
+    h1 Recommendations
+
+    table.table-centered
+      each t in tracks
+        tr 
+          - var artist_name = t.artists[0].name
+          - var track_name = t.name
+          - var track_preview = t.preview_url
+          - var track_external_urls = t.external_urls 
+
+          td #{artist_name}
+          td #{track_name}
+          td: a(href=track_external_urls.spotify, target="_blank") Listen
+          //- td: a(href=track_preview, target="_blank") Preview
+      a.btn.btn-primary(href="/dashboard") Back to general recommendations
+      <br>
+      <br>
+      button.btn.btn-primary(onclick="window.location.reload();") Refresh Recommendations
+      <br>
+      <br>
+      
+  div.text-center
+  
+    <br>
+    button.btn.btn-primary(onclick="window.location.reload();") Refresh Recommendations
+    <br>
+    <br>
+    a.btn.btn-primary(href="/dashboard") Back to general recommendations
+    <br>
+    <br>

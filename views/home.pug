@@ -1,0 +1,25 @@
+//- extends layout.pug
+
+//- block content
+//-   .container.text-center
+//-     h1.mb-4 Home Page ✨
+//-     p.mb-4 Welcome to the Home Page! Please choose an option:
+//-     a.btn.btn-primary.btn-lg(href='/dashboard')
+//-       | Go to Dashboard
+//-     a.btn.btn-secondary.btn-lg(href='https://www.spotify.com/', target='_blank')
+//-       | Open Spotify Website
+extends layout.pug
+
+block content
+  .container.text-center
+    h1.mb-4 Welcome to Spotify AI Reccy App ✨
+    p.mb-4 Machine Learning is perfect if you are looking for song recommendations based on your user profile and recently played songs
+    p.mb-4 If you're looking for a more specific recommendation, then our Open AI integration is your golden ticket. Simply write your mood and our AI will generate 5 songs based on the entire Spotify library.
+    button.btn.btn-primary.btn-lg(onclick="window.location.href='/dashboard'") ML (Machine Learning)
+    <br>
+    <br>
+    button.btn.btn-primary.btn-lg(onclick="window.location.href='/openai'") AI (Aritical Intelligence)
+    <br>
+    <br>
+    button.btn.btn-primary.circular_button.float-right(onclick="localStorage.clear(); window.location.href='https://accounts.spotify.com/en/logout?continue=https:%2F%2Faccounts.spotify.com%2Fen%2Flogin%3Fcontinue%3Dhttps%253A%252F%252Faccounts.spotify.com%252Fauthorize%253Fscope%253Duser-library-read%2526response_type%253Dcode%2526redirect_uri%253Dhttp%253A%252F%252Flocalhost%253A3000%252Fcallback%2526client_id%253D24ea5cb7ba2a4f38923194a5ddc36658'") Logout
+        //- span.logout-text Logout

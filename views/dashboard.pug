@@ -1,0 +1,120 @@
+extends layout.pug    
+
+block content
+  div.text-center
+    h1 ✨ Welcome #{user.id}! ✨
+    div(style="display: flex; align-items: center; justify-content: center")
+      //- img(src=user.images[0].url, class='circular_image')
+      span(style="margin-left: 10px")
+      <br>
+
+      button.btn.btn-primary.circular_button.float-right(style="margin-right: 10px;" onclick="window.location.href='/home'")
+        span.home-text Back to Home
+
+
+    //- div(style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;")
+    //-   input#input-text.form-control(type="text" placeholder="Input mood")
+    //-   button#copy-button.btn.btn-primary(style="margin-top: 10px;" onclick="copyText()")
+    //-     | Find a Song
+    //-   input#output-text.form-control(type="text" placeholder="Bank Account - 21 Savage" style="margin-top: 10px;" onclick="selectText()" readonly)
+
+    table.table-centered
+      each t in tracks
+        tr 
+          - var artist_name = t.artists[0].name
+          - var track_name = t.name
+          - var artist_id = t.artists[0].id
+          - var track_id = t.id
+          - var track_external_urls = t.external_urls 
+          
+          td #{artist_name}
+          td: a(href='/recommendations?artist=' + artist_id+'&track='+track_id) #{track_name}
+          //- td: a(href="#" id="play-link" data-track-id=track_id) Play
+          //- td: a(href="#" onclick="playAudio('"+t.uri+"')") Play
+          td: a(href=track_external_urls.spotify, target="_blank") Listen
+
+      
+      <br>
+      button.btn.btn-primary(onclick="window.location.reload();") Refresh Recommendations
+      <br>
+  div.text-center
+    //- top refresh^ bottom refresh below
+    <br>
+    button.btn.btn-primary(onclick="window.location.reload();") Refresh Recommendations
+    <br>
+    <br>
+    button.btn.btn-primary.circular_button.float-right(style="margin-right: 10px;" onclick="window.location.href='/home'")
+        span.home-text Back to Home
+    <br>
+    <br>
+    <br>
+
+  script.
+    function copyText() {
+      var input = document.getElementById("input-text");
+      var output = document.getElementById("output-text");
+      output.value = input.value + "xxx";
+    }
+    function selectText() {
+      var output = document.getElementById("output-text");
+      output.select();
+      document.execCommand("copy");
+    }
+
+
+
+
+
+//- extends layout.pug
+    
+//- block content
+//-   div.text-center
+//-     h1 ✨ Welcome #{user.id}! ✨
+//-     div(style="display: flex; align-items: center; justify-content: center")
+//-       img(src=user.images[0].url, class='circular_image')
+//-       span(style="margin-left: 10px")
+//-       <br>
+
+//-     div(style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;")
+//-       input#input-text.form-control(type="text" placeholder="Input mood")
+//-       button#copy-button.btn.btn-primary(style="margin-top: 10px;" onclick="copyText()")
+//-         | Find a Song
+//-       input#output-text.form-control(type="text" placeholder="Bank Account - 21 Savage" style="margin-top: 10px;" onclick="selectText()" readonly)
+
+//-     table.table-centered
+//-       each t in tracks
+//-         tr 
+//-           - var artist_name = t.artists[0].name
+//-           - var track_name = t.name
+//-           - var external_urls = t.external_urls.spotify
+//-           - var artist_id = t.artists[0].id
+//-           - var track_id = t.id 
+          
+//-           td #{artist_name}
+//-           td: a(href='/recommendations?artist=' + artist_id+'&track='+track_id) #{track_name}
+//-           td: a(href=external_urls, target="_blank") Play
+
+      
+//-       <br>
+//-       button.btn.btn-primary(onclick="window.location.reload();") Refresh Recommendations
+//-       <br>
+//-   div.text-center
+//-     //- top refresh^ bottom refresh below
+//-     <br>
+//-     button.btn.btn-primary(onclick="window.location.reload();") Refresh Recommendations
+//-     <br>
+//-     <br>
+//-     <br>
+
+//-   script.
+//-     function copyText() {
+//-       var input = document.getElementById("input-text");
+//-       var output = document.getElementById("output-text");
+//-       output.value = input.value + "xxx";
+//-     }
+//-     function selectText() {
+//-       var output = document.getElementById("output-text");
+//-       output.select();
+//-       document.execCommand("copy");
+//-     }
+
