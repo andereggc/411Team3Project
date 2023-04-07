@@ -3,6 +3,7 @@ import openai
 def getKey() -> str:
   fo = open("secretkey.txt", "r")
   key = fo.read(51)
+  print(key)
   return key
 
 
@@ -11,7 +12,7 @@ def makeReq(key: str, feelings: str) -> dict:
   response = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
     messages=[
-          {"role": "system", "content": " you are a model that is trained on the lyrics of the top 100 songs. you are given three feelings and are requested to suggest 10 songs that best fit a combination of those feelings. Please only respond with the artist and the name of the songs no other text."},
+          {"role": "system", "content": " you are a model that is trained on the lyrics of the top 100 songs. you are given some number of feelings or words and are requested to suggest 10 songs that best fit a combination of those words. Please only respond with the artist and the name of the songs no other text."},
           {"role": "user", "content": "I am feeling " + feelings}
       ]
   )
@@ -30,7 +31,7 @@ def produceReq(feelings: list[str]) -> str:
 
 
 def main():
- feelings = produceReq(["sad","depressed", "down"])
+ feelings = produceReq(["drake"])
  key = getKey()
  resp = makeReq(key, feelings)
  print(resp.choices[0].message.content)
