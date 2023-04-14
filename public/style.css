@@ -1,5 +1,9 @@
+/* Base styles */
 body {
   padding: 1em 2em;
+  background-color: #191414;
+  color: #FFFFFF;
+  font-family: "Circular", sans-serif;
 }
 ul.footer {
   list-style:none;
@@ -17,7 +21,7 @@ table {
 }
 
 td {
-  border: 0px solid #ddd;
+  border: 0px solid #ccc;
   padding: 12px;
   padding-left: 10px;
 }
@@ -30,32 +34,67 @@ td {
   float: left;
 }
 
-  .table-centered {
-    margin: 0 auto;
+.table-centered {
+  margin: 0 auto;
+}
+
+.circular_button-logout {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
+  background-color: #1DB954;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+.logout-text {
+  margin-left: 5px;
+  color: #fff;
+}
+
+.logout-button {
+  font-size: 12px;
+  padding: 2px 2x;
+}
+
+a {
+  color: #1DB954;
+}
+
+.btn-primary {
+  background-color: #1DB954;
+  border-color: #1DB954;
+}
+
+.btn-primary:hover {
+  background-color: #1ed760;
+  border-color: #1ed760;
+}
+
+input#input-text {
+  color: rgb(0, 0, 0);
+}
+
+input#input-text::placeholder {
+  color: rgb(0, 0, 0);
+}
+
+/* Styles for smaller screens */
+@media screen and (max-width: 480px) {
+  body {
+    padding: 0.5em 1em;
   }
-  .circular_button-logout {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    border-radius: 50%;
-    height: 50px;
-    width: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    outline: none;
-    background-color: #007bff;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    z-index: 10;
+
+  input#input-text.form-control {
+    width: 100%;
+    max-width: 400px;
   }
-  
-  .logout-text {
-    margin-left: 5px;
-    color: #fff;
-  }
-  .logout-button {
-    font-size: 12px;
-    padding: 2px 2x;
-  }
-  
+}
