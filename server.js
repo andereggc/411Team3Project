@@ -1,27 +1,54 @@
 import express from "express";
 import fetch from "node-fetch";
+import mongoose from "mongoose";
+import bodyparser from "body-parser"
 
 const app = express();
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({extended: true}));
+
+main().catch(err => console.log(err));
+
+async function main() {
+  await mongoose.connect('mongodb://127.0.0.1:27017/openai');
+}
+
+const modeschema = new mongoose.Schema({
+  mode: String,
+  song1: String,
+  song2: String,
+  song3: String,
+  time: String
+});
+
+const now = new Date();
+const Mode = mongoose.model('mode', modeschema);
+const Users = new Mode({ mode: 'happy', song1:'rich flex', time: now});
+//await Users.save();
+
+// const Doe = await Mode.find();
+// console.log(Doe);
+// await Mode.find({ name: /^John/ });
 
 
+
+// PUG specifics
 app.set("views", "./views");
 app.set("view engine", "pug");
 
 app.use(express.static("public"));
 
 const redirect_uri = "http://localhost:3000/callback";
-const client_id = "3dc064555d434042bd52092d02bae688";
-const client_secret = "0706726529df44fe807d56beb34ba5ed"; // MUST HIDE
+const client_id = "24ea5cb7ba2a4f38923194a5ddc36658";
+const client_secret = "b975f4c998bd449d9e279b0bf0dd2f23"; // MUST HIDE
 // DO NOT PUSH TO GITHUB WITH CLIENT_SECRET AVAILABLE
-
 
 global.access_token;
 
-
+//endpoints
 app.get("/", function (req, res) {
   res.render("index");
 });
-
 
 app.get("/authorize", (req, res) => {
   var auth_query_parameters = new URLSearchParams({
@@ -68,8 +95,20 @@ app.get("/home", async (req, res) => {
 });
 
 app.get("/openai", async (req, res) => {
-  const userInfo = await getData("/me");
+  const userInfo = await getData("/me");  
+  //console.log(userInfo.display_name)
   res.render("openai", { user: userInfo});
+});
+
+app.post("/openai", async (req, res) => {
+  // var myData = new Mode(req.body);
+  // myData.save().then(()=>{
+  //   res.send("This item has been saved to the database")
+  // }).catch(()=>{
+  //   res.status(400).send("item was not saved to the database")
+  // })
+  const Users = new Mode({ mode: req.body.input, song1:'rich flex', time: now});
+  await Users.save();
 });
 
 async function getData(endpoint) {
@@ -98,7 +137,6 @@ app.get("/dashboard", async (req, res) => {
   const data = await getData("/recommendations?" + params);
   res.render("dashboard", { user: userInfo, tracks: data.tracks, home_link: '/home' });
 });
-
 
 app.get("/recommendations", async (req, res) => {
   const artist_id = req.query.artist;
@@ -144,9 +182,3 @@ let listener = app.listen(3000, function () {
     "Your app is listening on http://localhost:" + listener.address().port
   );
 });
-
-
-// <br>
-// button.btn.btn-primary.circular_button.float-right.logout-button(onclick="localStorage.clear(); window.location.href='https://accounts.spotify.com/en/logout?continue=https:%2F%2Faccounts.spotify.com%2Fen%2Flogin%3Fcontinue%3Dhttps%253A%252F%252Faccounts.spotify.com%252Fauthorize%253Fscope%253Duser-library-read%2526response_type%253Dcode%2526redirect_uri%253Dhttp%253A%252F%252Flocalhost%253A3000%252Fcallback%2526client_id%253D24ea5cb7ba2a4f38923194a5ddc36658'") 
-//   span.logout-text Logout
-// <br>
