@@ -3,6 +3,8 @@ import fetch from "node-fetch";
 import mongoose from "mongoose";
 import bodyparser from "body-parser"
 import fs from "fs"
+import Configuration from "openai"
+import OpenAIApi from "openai";
 
 const app = express();
 app.use(bodyparser.json());
@@ -211,7 +213,7 @@ function getKey() {
 }
 
 async function makeReq( feelings) {
-    const { Configuration, OpenAIApi } = require("openai");
+    
     const configuration = new Configuration({
       apiKey: getKey(),
     });
@@ -227,5 +229,5 @@ async function makeReq( feelings) {
 }
 
 function produceReq(feelings) {
-  return feelings.join(' and ');
+  return feelings.concat(' and ');
 }
