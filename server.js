@@ -2,6 +2,7 @@ import express from "express";
 import fetch from "node-fetch";
 import mongoose from "mongoose";
 import bodyparser from "body-parser"
+import fs from "fs"
 
 const app = express();
 app.use(bodyparser.json());
@@ -40,7 +41,6 @@ app.use(express.static("public"));
 
 
 function getSpotifyKey() {
-  const fs = require('fs');
   const key = fs.readFileSync('spotifysecrets.txt', 'utf8');
   return key;
 }
@@ -206,7 +206,6 @@ let listener = app.listen(3000, function () {
 
 
 function getKey() {
-  const fs = require('fs');
   const key = fs.readFileSync('secretkey.txt', 'utf8').slice(0, 51);
   return key;
 }
