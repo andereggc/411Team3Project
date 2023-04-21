@@ -38,9 +38,17 @@ app.set("view engine", "pug");
 
 app.use(express.static("public"));
 
+
+function getSpotifyKey() {
+  const fs = require('fs');
+  const key = fs.readFileSync('spotifysecrets.txt', 'utf8');
+  return key;
+}
+
+
 const redirect_uri = "http://localhost:3000/callback";
 const client_id = "24ea5cb7ba2a4f38923194a5ddc36658";
-const client_secret = "b975f4c998bd449d9e279b0bf0dd2f23"; // MUST HIDE
+const client_secret = getSpotifyKey(); // MUST HIDE
 // DO NOT PUSH TO GITHUB WITH CLIENT_SECRET AVAILABLE
 
 global.access_token;
@@ -107,8 +115,20 @@ app.post("/openai", async (req, res) => {
   // }).catch(()=>{
   //   res.status(400).send("item was not saved to the database")
   // })
-  const Users = new Mode({ mode: req.body.input, song1:'rich flex', time: now});
-  await Users.save();
+  const feelings = req.body
+  const AIreq = produceReq(feelings)
+
+  const AIresp = makeReq(AIreq)
+
+  try {
+    const obj = JSON.parse(AIresp.choices[0].message.contentg);
+    res.send(obj)
+  } catch (e) {
+    console.error('Invalid JSON string:', e.message);
+  }
+
+  //const Users = new Mode({ mode: req.body.input, song1:'rich flex', time: now});
+  //await Users.save();
 });
 
 async function getData(endpoint) {
@@ -182,3 +202,31 @@ let listener = app.listen(3000, function () {
     "Your app is listening on http://localhost:" + listener.address().port
   );
 });
+
+
+
+function getKey() {
+  const fs = require('fs');
+  const key = fs.readFileSync('secretkey.txt', 'utf8').slice(0, 51);
+  return key;
+}
+
+async function makeReq( feelings) {
+    const { Configuration, OpenAIApi } = require("openai");
+    const configuration = new Configuration({
+      apiKey: getKey(),
+    });
+    const openai = new OpenAIApi(configuration);
+    const response = await openai.createCompletion({
+      model: "text-davinci-003",
+      prompt: `you are a model that is trained on the lyrics of the top 100 songs. you are given some number of feelings or words and are requested to suggest 10 songs that best fit a combination of those words. 
+      Please only respond with the artist and the name of the songs in a json format. no other text.User: I am feeling ${feelings}`,
+      max_tokens: 1000,
+      temperature: 0,
+    });
+  return response;
+}
+
+function produceReq(feelings) {
+  return feelings.join(' and ');
+}
