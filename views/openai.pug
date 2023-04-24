@@ -14,7 +14,7 @@ block content
 
     div(style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;")
       input#input-text.form-control(name="mode" type="text" placeholder="Input artist name" )  
-      button#copy-button.btn.btn-primary(style="margin-top: 10px;" type="submit" onclick=" saveData(); generateSongs()")
+      button#copy-button.btn.btn-primary(style="margin-top: 10px;" type="submit" onclick=" saveData(); ")
         | Find Top Songs
       ul#output-text(style="margin-top: 10px; list-style-type: none; padding: 0;")
 
@@ -30,8 +30,24 @@ block content
           body: JSON.stringify(data)
       })
       .then(response => response.json())
-      .then(data => console.log(data))
+      .then(obj => {
+        document.getElementById("output-text").innerHTML = convertToSongByArtistFormat(obj);
+      })
       .catch(error => console.error(error));
+    }
+
+    function convertToSongByArtistFormat(songList) {
+      const result = [];
+      const songObj = songList.Songs[0];
+      for (const artist in songObj) {
+        const song = songObj[artist];
+        result.push(`<br>${song} by ${artist}`);
+      }
+      return result;
+    }
+
+    async function generateSongsbyGPT() {
+
     }
 
     async function generateSongs() {

@@ -124,12 +124,12 @@ app.post("/openai", async (req, res) => {
   try {
     const obj = JSON.parse(AIresp);
     console.log(obj)
-    res.send(obj)
+    res.send(obj) 
   } catch (e) {
     console.error('Invalid JSON string:', e.message);
   }
 
-  const Users = new Mode({ mode: req.body.input, song1:'rich flex', time: now});
+  const Users = new Mode({ mode: req.body.input, time: now});
   await Users.save();
 });
 
@@ -248,7 +248,7 @@ async function makeReq( feelings) {
 
     const dataCleaned = cleanReq(data)
 
-    console.log(dataCleaned)
+    //console.log(dataCleaned)
 
   return dataCleaned
 }
