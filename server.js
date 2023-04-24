@@ -3,8 +3,7 @@ import fetch from "node-fetch";
 import mongoose from "mongoose";
 import bodyparser from "body-parser"
 import fs from "fs"
-import Configuration from "openai"
-import OpenAIApi from "openai";
+import { Configuration,  OpenAIApi} from 'openai';
 
 const app = express();
 app.use(bodyparser.json());
@@ -117,20 +116,21 @@ app.post("/openai", async (req, res) => {
   // }).catch(()=>{
   //   res.status(400).send("item was not saved to the database")
   // })
-  const feelings = req.body
+  const feelings = req.body.input
+  console.log(feelings)
   const AIreq = produceReq(feelings)
 
-  const AIresp = makeReq(AIreq)
-
+  const AIresp = await makeReq(AIreq)
   try {
-    const obj = JSON.parse(AIresp.choices[0].message.contentg);
+    const obj = JSON.parse(AIresp);
+    console.log(obj)
     res.send(obj)
   } catch (e) {
     console.error('Invalid JSON string:', e.message);
   }
 
-  //const Users = new Mode({ mode: req.body.input, song1:'rich flex', time: now});
-  //await Users.save();
+  const Users = new Mode({ mode: req.body.input, song1:'rich flex', time: now});
+  await Users.save();
 });
 
 async function getData(endpoint) {
@@ -212,6 +212,25 @@ function getKey() {
   return key;
 }
 
+function cleanReq(req){
+  // Find the first occurrence of the opening brace character
+const startIndex = req.indexOf('{');
+
+// Find the last occurrence of the closing brace character
+const endIndex = req.lastIndexOf('}');
+
+// Extract the JSON object substring from the original string
+const jsonObjectString = req.substring(startIndex, endIndex + 1);
+
+const appendToFront = '{"Songs": ['
+
+const appendToBack = ']}'
+
+const finalstringobject = appendToFront + jsonObjectString + appendToBack
+
+return finalstringobject
+}
+
 async function makeReq( feelings) {
     
     const configuration = new Configuration({
@@ -221,11 +240,17 @@ async function makeReq( feelings) {
     const response = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: `you are a model that is trained on the lyrics of the top 100 songs. you are given some number of feelings or words and are requested to suggest 10 songs that best fit a combination of those words. 
-      Please only respond with the artist and the name of the songs in a json format. no other text.User: I am feeling ${feelings}`,
+      Please only respond with the artist and the name of the songs in a json format where the artist is the key and the song is the value. no other text.User: I am feeling ${feelings}`,
       max_tokens: 1000,
       temperature: 0,
     });
-  return response;
+    const data = response.data.choices[0].text
+
+    const dataCleaned = cleanReq(data)
+
+    console.log(dataCleaned)
+
+  return dataCleaned
 }
 
 function produceReq(feelings) {
