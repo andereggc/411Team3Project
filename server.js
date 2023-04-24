@@ -16,7 +16,7 @@ async function main() {
 }
 
 const modeschema = new mongoose.Schema({
-  mode: String,
+  mood: String,
   song1: String,
   song2: String,
   song3: String,
@@ -24,10 +24,8 @@ const modeschema = new mongoose.Schema({
 });
 
 const now = new Date();
-const Mode = mongoose.model('mode', modeschema);
-const Users = new Mode({ mode: 'happy', song1:'rich flex', time: now});
+const Mood = mongoose.model('mood', modeschema);
 //await Users.save();
-
 // const Doe = await Mode.find();
 // console.log(Doe);
 // await Mode.find({ name: /^John/ });
@@ -110,12 +108,6 @@ app.get("/openai", async (req, res) => {
 });
 
 app.post("/openai", async (req, res) => {
-  // var myData = new Mode(req.body);
-  // myData.save().then(()=>{
-  //   res.send("This item has been saved to the database")
-  // }).catch(()=>{
-  //   res.status(400).send("item was not saved to the database")
-  // })
   const feelings = req.body.input
   console.log(feelings)
   const AIreq = produceReq(feelings)
@@ -129,7 +121,7 @@ app.post("/openai", async (req, res) => {
     console.error('Invalid JSON string:', e.message);
   }
 
-  const Users = new Mode({ mode: req.body.input, time: now});
+  const Users = new Mood({ mood: feelings, time: now});
   await Users.save();
 });
 
