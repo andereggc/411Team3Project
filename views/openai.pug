@@ -14,13 +14,13 @@ block content
 
     div(style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;")
       input#input-text.form-control(name="mode" type="text" placeholder="Input artist name" )  
-      button#copy-button.btn.btn-primary(style="margin-top: 10px;" type="submit" onclick=" saveData(); ")
+      button#copy-button.btn.btn-primary(style="margin-top: 10px;" type="submit" onclick=" generateSongsbyGPT(); ")
         | Find Top Songs
       ul#output-text(style="margin-top: 10px; list-style-type: none; padding: 0;")
 
   script.
     //- script starts    
-    async function saveData() {
+    async function generateSongsbyGPT() {
       const input = document.getElementById('input-text').value;
       const data = { input: input };
       // Send a POST request to the server using the Fetch API
@@ -46,9 +46,6 @@ block content
       return result;
     }
 
-    async function generateSongsbyGPT() {
-
-    }
 
     async function generateSongs() {
       var input = document.getElementById("input-text");
