@@ -157,12 +157,8 @@ app.get("/recommendations", async (req, res) => {
   const track_id = req.query.track;
 
   const params = new URLSearchParams({
-    seed_artist: artist_id, // CHANGE???
-    seed_genres: "rock", 
-    // min 1:19 he talks abt this 
-    seed_tracks: track_id, // CHANGE???
-
-    // ^^^should finf the other categories "rock" falls into
+    seed_artist: artist_id,
+    seed_tracks: track_id, 
   });
 
   const data = await getData("/recommendations?" + params);
