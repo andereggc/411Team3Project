@@ -9,6 +9,9 @@ https://github.com/alnacle/spotify-api-workshop
 
 
 
-Uploading Screen Recording 2023-04-28 at 14.38.50.mov…
+
+https://user-images.githubusercontent.com/107784588/235227880-e60a7990-2af6-454a-8988-c9d89d18440c.mov
+
+
 
 
