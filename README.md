@@ -1,5 +1,9 @@
 JNC Reccy App
 
+We use MongoDB for our database and use Spotify for our OAuth. 
+We also used the Spotify API and Open AI API. Our project is 
+full stack and we utilized decoupled architecture
+
 Install if new: npm install
 
 To start site: npm run start
