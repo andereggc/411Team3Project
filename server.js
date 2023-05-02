@@ -38,12 +38,10 @@ app.set("view engine", "pug");
 
 app.use(express.static("public"));
 
-
 function getSpotifyKey() {
   const key = fs.readFileSync('spotifysecrets.txt', 'utf8');
   return key;
 }
-
 
 const redirect_uri = "http://localhost:3000/callback";
 const client_id = "24ea5cb7ba2a4f38923194a5ddc36658";
@@ -192,8 +190,6 @@ let listener = app.listen(3000, function () {
     "Your app is listening on http://localhost:" + listener.address().port
   );
 });
-
-
 
 function getKey() {
   const key = fs.readFileSync('secretkey.txt', 'utf8').slice(0, 51);
